@@ -1,0 +1,105 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%; /* Default width for smaller screens */
+  max-width: 500px; /* Maximum width for larger screens */
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 24px; /* Default font size */
+}
+
+.userWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between inputs and remove button */
+   /* Space between user sections */
+}
+
+.userInput {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex: 1; /* Allow userInput to grow and take available space */
+  flex-direction: column; /* Stack inputs vertically on small screens */
+}
+
+
+.userInput input {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* Full width on small screens */
+  height:20px;
+  max-width: 80%; /* Allow inputs to grow within their container */
+  margin-bottom:20px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+  margin: 5px; /* Full width on small screens */
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+#result {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.removeUser {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 1000px;
+  background-color: #dc3545;
+  color: white;
+  cursor: pointer;
+  max-width:6.5%;
+}
+
+.removeUser:hover {
+  background-color: #c82333;
+}
+
+@media (min-width: 768px) {
+  .userInput {
+    flex-direction: row; /* Align inputs horizontally on larger screens */
+  }
+
+  .userInput input {
+    width: auto; /* Reset width for larger screens */
+    max-width: 120px; /* Set a reasonable max-width for inputs */
+  }
+
+  button {
+    width: auto; /* Reset width for larger screens */
+  }
+
+  h1 {
+    font-size: 28px; /* Larger font size for larger screens */
+  }
+}
