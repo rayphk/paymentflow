@@ -7,8 +7,8 @@ function addUser() {
   newUserInput.className = "userInput";
   newUserInput.innerHTML = `
     <input type="text" placeholder="Name" required>
-    <input type="number" placeholder="Should Pay" step="any" required>
-    <input type="number" placeholder="Previously Paid" step="any" required>
+    <input type="number" placeholder="Pay" step="any" value="0" required>
+    <input type="number" placeholder="Receive" step="any" value= "0" required>
   `;
 
   const removeButton = document.createElement("button");
