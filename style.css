@@ -48,7 +48,7 @@ h1 {
   border-radius: 4px;
   width: 100%; /* Full width on small screens */
   height:20px;
-  max-width: 80%; /* Allow inputs to grow within their container */
+  max-width: 80px; /* Allow inputs to grow within their container */
   margin-bottom:20px;
 }
 
@@ -72,7 +72,7 @@ button:hover {
 }
 
 .removeUser {
-  padding: 8px 12px;
+  padding: 4px 8px;
   border: none;
   border-radius: 1000px;
   background-color: #dc3545;
@@ -85,21 +85,31 @@ button:hover {
   background-color: #c82333;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 389px) {
   .userInput {
     flex-direction: row; /* Align inputs horizontally on larger screens */
+
   }
 
   .userInput input {
     width: auto; /* Reset width for larger screens */
-    max-width: 120px; /* Set a reasonable max-width for inputs */
+    max-width: 80px; /* Set a reasonable max-width for inputs */
   }
 
   button {
     width: auto; /* Reset width for larger screens */
   }
 
+
   h1 {
     font-size: 28px; /* Larger font size for larger screens */
   }
+  
 }
+@media (min-width: 520px) {
+  .userInput input {
+    width: auto; /* Reset width for larger screens */
+    max-width: 120px; /* Set a reasonable max-width for inputs */
+  }
+
+
