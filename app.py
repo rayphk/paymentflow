@@ -44,13 +44,12 @@ def optimize_payments(users):
                 "amount": round(-float(net[sort[j]]), 4)})
             j-=1
         if net[sort[j]] == 0:
-           j-=1
+            j-=1
     return {'payments': payments}
 
 @app.route("/calculate", methods=["POST"])
 def calculate():
     try:
- 
        # Get JSON data from the request
         data = request.get_json()
         if not data or "users" not in data:
@@ -63,5 +62,3 @@ def calculate():
         return jsonify({"error": str(e), "details":  traceback.format_exc()}), 500
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
-
-
