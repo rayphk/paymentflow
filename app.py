@@ -43,7 +43,7 @@ def optimize_payments(users):
                 "to": users[sort[j-1]]['name'],
                 "amount": round(-float(net[sort[j]]), 4)})
             j-=1
-        if net[sort[j]] == 0:
+        if round(net[sort[j]], 6) == 0:
             j-=1
     return {'payments': payments}
 
