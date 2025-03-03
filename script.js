@@ -1,3 +1,7 @@
+// Get the language of the current document
+const language = document.documentElement.lang;
+
+// Check the language and perform actions accordingly
 function addUser() {
   const inputFields = document.getElementById("inputFields");
   const userWrapper = document.createElement("div");
@@ -5,11 +9,18 @@ function addUser() {
 
   const newUserInput = document.createElement("div");
   newUserInput.className = "userInput";
+  if (language === 'en'){
   newUserInput.innerHTML = `
     <input type="text" placeholder="Name" required>
-    <input type="number" placeholder="Pay" step="any" value="0" required>
-    <input type="number" placeholder="Receive" step="any" value= "0" required>
-  `;
+    <input type="text" placeholder="Pay" step="any">
+    <input type="text" placeholder="Receive" step="any">
+  `;}
+  else if (language === 'zh'){
+  newUserInput.innerHTML = `
+    <input type="text" placeholder="姓名" required>
+    <input type="text" placeholder="需繳交" step="any">
+    <input type="text" placeholder="應收取" step="any">
+  `;}
 
   const removeButton = document.createElement("button");
   removeButton.type = "button";
@@ -28,7 +39,6 @@ function addUser() {
   // Append the wrapper to the inputFields container
   inputFields.appendChild(userWrapper);
 }
-
 document.getElementById("paymentForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const users = [];
@@ -37,8 +47,8 @@ document.getElementById("paymentForm").addEventListener("submit", async (e) => {
   for (let i = 0; i < inputs.length; i++) {
     const input = inputs[i];
     const name = input.children[0].value;
-    const expected = parseFloat(input.children[1].value);
-    const paid = parseFloat(input.children[2].value);
+    const expected = eval(input.children[1].value||0);
+    const paid = eval(input.children[2].value ||0);
     users.push({ name, expected, paid });
   }
   try {
@@ -63,21 +73,37 @@ document.getElementById("paymentForm").addEventListener("submit", async (e) => {
 function displayResult(result) {
   const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = "";
-
+  
   if (result.lack) {
-    resultDiv.innerHTML += `<p><strong>Imbalance:</strong> Lack of funds: ${result.lack}</p>`;
+    if (language === 'en'){
+      resultDiv.innerHTML += `<p><strong>Imbalance:</strong> Lack of funds: ${result.lack}</p>`;}
+    if (language === 'zh'){
+      resultDiv.innerHTML += `<p><strong>不平衡:</strong> 費用不足: ${result.lack}</p>`;}
   }
 
   else if (result.overflow) {
-    resultDiv.innerHTML += `<p><strong>Imbalance:</strong> Overflow of funds: ${result.overflow}</p>`;
+    if (language === 'en'){
+      resultDiv.innerHTML += `<p><strong>Imbalance:</strong> Overflow of funds: ${result.overflow}</p>`;}
+    if (language === 'zh'){
+      resultDiv.innerHTML += `<p><strong>不平衡:</strong> 支付過多: ${result.overflow}</p>`;}
   }
   else if (result.payments.length > 0) {
     for (let i = 0; i < result.payments.length; i++) {
       const payment = result.payments[i];
-      resultDiv.innerHTML += `<p>${payment.from} pays ${payment.to}: $${payment.amount}</p>`;
+      if (language === 'en'){
+        resultDiv.innerHTML += `<p>${payment.from} pays ${payment.to}: $${payment.amount}</p>`;}
+      if (language === 'zh'){
+        resultDiv.innerHTML += `<p>${payment.from} 應支付 ${payment.to}: $${payment.amount}</p>`;}
     }
   }
   else {
-     resultDiv.innerHTML += `<p>Why do you need to calculate that? </p>`;
+     if (language === 'en'){
+       resultDiv.innerHTML += `<p> Why do you need to calculate that? </p>`;}
+     if (language === 'zh'){
+       resultDiv.innerHTML += `<p> 你確定？ </p>`;}
+  }
+}
+
+
   }
 }
